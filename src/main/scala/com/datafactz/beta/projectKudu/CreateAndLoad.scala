@@ -40,8 +40,8 @@ object CreateAndLoad {
 
     val kuduTableSchema = StructType(hiveTableSchema)
 
-    val kuduPrimaryKey = Seq("ss_item_sk", "ss_ticket_number", "ss_sold_date" )
-    val partitionOn = Seq("ss_sold_date")
+    val kuduPrimaryKey = Seq("ss_item_sk", "ss_ticket_number", "ss_sold_date_sk" )
+    val partitionOn = Seq("ss_sold_date_sk")
     val kuduTableOptions = new CreateTableOptions()
 
     // Minimum two buckets for hash partitioning

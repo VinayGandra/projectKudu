@@ -23,7 +23,7 @@ object CreateAndLoad {
     val kuduContext = new KuduContext(kuduMaster)
 
     // Later get all tables in hive db in a list and perform ddl
-    val hiveTableName = "tpcds_parquet.et_store_sales"
+    val hiveTableName = "tpcds_parquet.tmp2"
     val kuduTableName = "sp_store_sales"
 
     // Choose which option

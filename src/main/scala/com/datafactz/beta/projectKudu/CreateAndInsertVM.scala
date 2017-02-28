@@ -22,10 +22,10 @@ object CreateAndInsertVM {
     val hiveTableName = "tpcds_parquet.item"
     val kuduTableName = "sp_item"
 
-    /* Choose which option
+    // Choose which option
     if (kuduContext.tableExists(kuduTableName)) {
       kuduContext.deleteTable(kuduTableName)
-    }*/
+    }
 
     val hiveDF = sqlContext.table(hiveTableName)
     var hiveTableSchema = hiveDF.schema.fields

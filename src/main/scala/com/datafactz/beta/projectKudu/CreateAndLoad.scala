@@ -16,20 +16,20 @@ object CreateAndLoad {
 
     // Later pick kudu masters pick from args dynamically or default kudu. Hard-coding for our cluster.
     var master1 = "vm-hadoop-s4"
-    var master2 = "vm-hadoop=s5"
+//    var master2 = "vm-hadoop=s5"
 
-    val kuduMaster = Seq(master1, master2).mkString(",")
+    val kuduMaster = Seq(master1).mkString(",")
 
     val kuduContext = new KuduContext(kuduMaster)
 
     // Later get all tables in hive db in a list and perform ddl
     val hiveTableName = "tpcds_parquet.store_sales"
-    val kuduTableName = "kududb.store_sales"
+    val kuduTableName = "store_sales"
 
-    /* Choose which option
+    // Choose which option
     if (kuduContext.tableExists(kuduTableName)) {
       kuduContext.deleteTable(kuduTableName)
-    }*/
+    }
 
     val hiveDF = sqlContext.table(hiveTableName)
     var hiveTableSchema = hiveDF.schema.fields

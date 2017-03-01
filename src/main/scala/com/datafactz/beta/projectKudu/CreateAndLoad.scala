@@ -16,7 +16,7 @@ object CreateAndLoad {
 
     // Later pick kudu masters pick from args dynamically or default kudu. Hard-coding for our cluster.
     var master1 = "vm-hadoop-s4"
-//    var master2 = "vm-hadoop=s5"
+    var master2 = "vm-hadoop=s5"
 
     val kuduMaster = Seq(master1).mkString(",")
 

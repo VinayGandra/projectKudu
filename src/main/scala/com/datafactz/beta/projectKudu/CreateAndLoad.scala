@@ -16,14 +16,13 @@ object CreateAndLoad {
 
     // Later pick kudu masters pick from args dynamically or default kudu. Hard-coding for our cluster.
     var master1 = "vm-hadoop-s4"
-    var master2 = "vm-hadoop=s5"
 
     val kuduMaster = Seq(master1).mkString(",")
 
     val kuduContext = new KuduContext(kuduMaster)
 
     // Later get all tables in hive db in a list and perform ddl
-    val hiveTableName = "tpcds_parquet.tmp2"
+    val hiveTableName = "tpcds_parquet.tmp3"
     val kuduTableName = "sp_store_sales"
 
     // Choose which option
@@ -45,7 +44,8 @@ object CreateAndLoad {
     val kuduTableOptions = new CreateTableOptions()
 
     // Minimum two buckets for hash partitioning
-    kuduTableOptions.setRangePartitionColumns(partitionOn.asJava)
+    kuduTableOptions.addHashPartitions(partitionOn.asJava, 3).setNumReplicas(1)
+//    kuduTableOptions.setRangePartitionColumns(partitionOn.asJava).setNumReplicas(1)
 
     // Create kudu table
     kuduContext.createTable(kuduTableName, kuduTableSchema, kuduPrimaryKey, kuduTableOptions)
